@@ -213,7 +213,7 @@ Genotpye-to-phenotype prediciton via ridge regression best linear unbiased predi
 <li>Usage <br/>
 <code>SNPrrBLUP(x,y,fix = NULL,idx1,idx2)</code></li>
 <li>Arguments<ul>
-<li><code>x</code> Genotypic matrix in numberic format (See <a href="./##### Transform character to number"><code>transHapmap2numeric</code></a>), row represents sample well column represents feature (SNP).</li>
+<li><code>x</code> Genotypic matrix in numberic format (See <a href="./#####Transform character to number"><code>transHapmap2numeric</code></a>), row represents sample well column represents feature (SNP).</li>
 <li><code>y</code> An numeric array of phenotype.</li>
 <li><code>fix</code> A matrix containing other variables as fixed effects in mixed model.</li>
 <li><code>idx1</code> An array of index for training set</li>
@@ -269,7 +269,7 @@ Visualization of IBD map results. </li>
 <li>Usage <br/>
 <code>binsPlot(IBDRes,color,parentInfo,parentNum)</code></li>
 <li>Arguments<ul>
-<li><code>IBDRes</code> The results of IBDConstruct, see \code{\link{IBDConstruct}}.</li>
+<li><code>IBDRes</code> The results of IBDConstruct, see <a href="##Bins map construction and visualization"><code>IBDConstruct</code></a>.</li>
 <li><code>color</code> A named vector for defining color of parents.</li>
 <li><code>parentInfo</code> A named vector for defining label of parents.</li>
 <li><code>parentNum</code> The number of parents.
@@ -293,8 +293,8 @@ Visualization of overall bins data</li>
 <li><code>parentNum</code> The number of parent, if color not defined, this parameter is used to auto generate color palette. </li>
 <li><code>color</code> A array to define color palette.</li>
 <li><code>clust</code> Boolean values determining if lines should be hclust object.</li>
-<li><code>methods</code> Clustering method used. Accepts the same values as \code{\link{hclust}}.</li>
-<li><code>dist_method</code> The distance measure to be used for clustering. See \code{\link{dist}}
+<li><code>methods</code> Clustering method used.</li>
+<li><code>dist_method</code> The distance measure to be used for clustering.
 <br/></li>
 </ul>
 </li>
