@@ -1,0 +1,443 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        
+        <meta name="author" content="Qian Cheng">
+        
+        <link rel="shortcut icon" href="../img/favicon.ico">
+        <title>Tutorial - GOVS</title>
+        <link href="../css/bootstrap.min.css" rel="stylesheet">
+        <link href="../css/font-awesome.min.css" rel="stylesheet">
+        <link href="../css/base.css" rel="stylesheet">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css">
+
+        <script src="../js/jquery-1.10.2.min.js" defer></script>
+        <script src="../js/bootstrap.min.js" defer></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/languages/yaml.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/languages/rust.min.js"></script>
+        <script>hljs.initHighlightingOnLoad();</script> 
+    </head>
+
+    <body>
+        <div class="navbar fixed-top navbar-expand-lg navbar-dark bg-primary">
+            <div class="container">
+                <a class="navbar-brand" href="..">GOVS</a>
+                <!-- Expander button -->
+                <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbar-collapse">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+
+                <!-- Expanded navigation -->
+                <div id="navbar-collapse" class="navbar-collapse collapse">
+                        <!-- Main navigation -->
+                        <ul class="nav navbar-nav">
+                            <li class="navitem">
+                                <a href=".." class="nav-link">Home</a>
+                            </li>
+                            <li class="navitem">
+                                <a href="../QuickStart/" class="nav-link">QuickStart</a>
+                            </li>
+                            <li class="navitem active">
+                                <a href="./" class="nav-link">Tutorial</a>
+                            </li>
+                            <li class="navitem">
+                                <a href="../about/" class="nav-link">About</a>
+                            </li>
+                        </ul>
+
+                    <ul class="nav navbar-nav ml-auto">
+                        <li class="nav-item">
+                            <a href="#" class="nav-link" data-toggle="modal" data-target="#mkdocs_search_modal">
+                                <i class="fa fa-search"></i> Search
+                            </a>
+                        </li>
+                            <li class="nav-item">
+                                <a rel="prev" href="../QuickStart/" class="nav-link">
+                                    <i class="fa fa-arrow-left"></i> Previous
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a rel="next" href="../about/" class="nav-link">
+                                    Next <i class="fa fa-arrow-right"></i>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="https://github.com/GOVS-pack/GOVS/edit/master/docs/Tutorial.md" class="nav-link"><i class="fa fa-github"></i> Edit on GitHub</a>
+                            </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="container">
+            <div class="row">
+                    <div class="col-md-3"><div class="navbar-light navbar-expand-md bs-sidebar hidden-print affix" role="complementary">
+    <div class="navbar-header">
+        <button type="button" class="navbar-toggler collapsed" data-toggle="collapse" data-target="#toc-collapse" title="Table of Contents">
+            <span class="fa fa-angle-down"></span>
+        </button>
+    </div>
+
+    
+    <div id="toc-collapse" class="navbar-collapse collapse card bg-secondary">
+        <ul class="nav flex-column">
+            
+            <li class="nav-item" data-level="1"><a href="#tutorial" class="nav-link">Tutorial</a>
+              <ul class="nav flex-column">
+            <li class="nav-item" data-level="2"><a href="#govs" class="nav-link">GOVS</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="2"><a href="#genome-optimization-module" class="nav-link">Genome optimization module</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="2"><a href="#extraction-assembly-module" class="nav-link">Extraction &amp; assembly module</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="2"><a href="#statistic-module" class="nav-link">Statistic module</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="2"><a href="#genome-selection-prediciton-module" class="nav-link">Genome selection prediciton module</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="2"><a href="#bins-map-construction-and-visualization" class="nav-link">Bins map construction and visualization</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="2"><a href="#bins-map-construction-and-visualization_1" class="nav-link">Bins map construction and visualization</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="2"><a href="#orther-useful-functions" class="nav-link">Orther useful functions</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+              </ul>
+            </li>
+        </ul>
+    </div>
+</div></div>
+                    <div class="col-md-9" role="main">
+
+<h1 id="tutorial"><center>Tutorial</center></h1>
+<p><center>Function introduction and parameter information</center></p>
+<hr />
+<p>In this section, the functions in GOVS and thier parameters will be introducted in details.</p>
+<h2 id="govs">GOVS</h2>
+<ul>
+<li><em><strong><code>GOVS</code></strong></em></li>
+<li>Description</br>
+One-stop function for a complete progress of genome optimization</li>
+<li>Usage <br/>
+<code>GOVS(hmp,ID = NULL,pheno,trait,bins,binsInfo,output,module = "DES",designInfo = NULL)</code></li>
+<li>Arguments<ul>
+<li><code>hmp</code> The genetic data in hapmap format.</li>
+<li><code>ID</code> A character array regarding sample IDs for <code>hmp</code>, if NULL, the <code>hmp</code> data must involve header.</li>
+<li><code>pheno</code> Phenotypic data frame, the first column describes sample IDs.</li>
+<li><code>trait</code> The names of interest trait (The trait must be included in <code>Pheno</code> data frame).</li>
+<li><code>bins</code> Results of IBD analysis (bins matrix), each row represents a bin fragment as well as each column represents each sample.</li>
+<li><code>binsInfo</code> Data frame, including bins index, start, end, length of bins locus.</li>
+<li><code>output</code> The prefix of output files.</li>
+<li><code>module</code> Character represents the module combination for analysis, default "DES", "D" for genome optimization module, "E" for extraction &amp; assembly module. "S" for statistic module. "D","E","S","DE","DES" and "ES" are alternative for different module combinations. Note that different combination need different essential inputs, details see <a href="./##Genome optimization module"><code>genomeOptimization</code></a> <a href="./##Extraction &amp; assembly module"><code>extractGenome</code></a> <a href="./##Statistic module"><code>statDesign</code></a>.</li>
+<li><code>designInfo</code> Data frame, the results of genome optimization module, it's necessary for "ES" and "S" module.
+<br/></li>
+</ul>
+</li>
+</ul>
+<h2 id="genome-optimization-module">Genome optimization module</h2>
+<ul>
+<li><em><strong><code>genomeOptimization</code></strong></em></li>
+<li>Description<br/>
+Virtual genome optimization based IBD(bins) data</li>
+<li>Usage <br/>
+<code>genomeOptimization(pheno, bins, trait, output)</code></li>
+<li>Arguments<ul>
+<li><code>Pheno</code> Phenotypic data frame, the first column describes sample names.</li>
+<li><code>bins</code> Results of IBD analysis (bins matrix), each row represents a bin fragment as well as each column represents each sample.</li>
+<li><code>trait</code> The names of interest trait (The trait must be included in <code>Pheno</code> data frame). </li>
+<li><code>output</code> The prefix of output files regarding the scheme of virtual genome.
+<br/></li>
+</ul>
+</li>
+</ul>
+<h2 id="extraction-assembly-module">Extraction &amp; assembly module</h2>
+<ul>
+<li><em><strong><code>extractGenome</code></strong></em></li>
+<li>Description<br/>
+Extracting genome fragment from candidates based the results of genome optimization and then assembling all fragments so that produce optimized genome(virtual genome).</li>
+<li>Usage <br/>
+<code>extractGenome(hmp,binInfo,ID = NULL,designInfo,output,write = F,bins,extractContent ="Genotype")</code></li>
+<li>Arguments<ul>
+<li><code>hmp</code> The genetic data in hapmap format.</li>
+<li><code>binInfo</code> Data frame, including bins index, start, end, length of bins locus.</li>
+<li><code>ID</code> A character array regarding sample IDs for <code>hmp</code>, if NULL, the <code>hmp</code> data must involve header.</li>
+<li><code>designInfo</code> Outputs of <a href="./##Genome optimization module"><code>genomeOptimization</code></a>, a matrix consists of sample IDs regarding the fragment source among condidates at each bin locus.</li>
+<li><code>write</code> Boolean, if write the assembled genome to file, default FALSE.</li>
+<li><code>bins</code> Results of IBD analysis (bins matrix), each row represents a bin fragment as well as each column represents each sample.</li>
+<li><code>extractContent</code> Character, the content of virtual genome, "Bin" for bin source well "Genotype" for genetic data, default "Genotype".
+<br/></li>
+</ul>
+</li>
+</ul>
+<h2 id="statistic-module">Statistic module</h2>
+<ul>
+<li><em><strong><code>statDesign</code></strong></em></li>
+<li>Description</br>
+Statistic summary for analysis of the contribution of all candidates to optimal genome. The results directly guide the lines selection and population improvement route.</li>
+<li>Usage <br/>
+<code>statDesign(designInfo,binInfo,pheno,trait,output)</code></li>
+<li>Arguments<ul>
+<li><code>designInfo</code> Outputs of <a href="./##Genome optimization module"><code>genomeOptimization</code></a>, a matrix consists of sample IDs regarding the fragment source among condidates at each bin locus.</li>
+<li><code>binInfo</code> Data frame, including bins index, start, end, length of bins locus.</li>
+<li><code>pheno</code> Phenotypic data frame, the first column describes sample names.</li>
+<li><code>trait</code> The names of interest trait (The trait must be included in <code>Pheno</code> data frame). </li>
+<li><code>output</code> The prefix of output files regarding the summary and statistic infomation via the process of genome optimization.
+<br/></li>
+</ul>
+</li>
+</ul>
+<h2 id="genome-selection-prediciton-module">Genome selection prediciton module</h2>
+<h5 id="rrblup-model">rrBLUP model</h5>
+<ul>
+<li><em><strong><code>SNPrrBLUP</code></strong></em></li>
+<li>Description</br>
+Genotpye-to-phenotype prediciton via ridge regression best linear unbiased prediction (rrBLUP) model. The inputs is genotypes.</li>
+<li>Usage <br/>
+<code>SNPrrBLUP(x,y,fix = NULL,idx1,idx2)</code></li>
+<li>Arguments<ul>
+<li><code>x</code> Genotypic matrix in numberic format (See <a href="./##### Transform character to number"><code>transHapmap2numeric</code></a>), row represents sample well column represents feature (SNP).</li>
+<li><code>y</code> An numeric array of phenotype.</li>
+<li><code>fix</code> A matrix containing other variables as fixed effects in mixed model.</li>
+<li><code>idx1</code> An array of index for training set</li>
+<li><code>idx2</code> An array of index for testing (predicted) set
+<br/></li>
+</ul>
+</li>
+</ul>
+<h5 id="gblup-model">GBLUP model</h5>
+<ul>
+<li><em><strong><code>GBLUP</code></strong></em></li>
+<li>Description</br>
+Genotpye-to-phenotype prediciton via genomic best linear unbiased prediction (GBLUP) model. The inputs is genotypes.</li>
+<li>Usage <br/>
+<code>GBLUP(amat,y,idx1,idx2,fix = NULL)</code></li>
+<li>Arguments<ul>
+<li><code>amat</code> Additive relationship matrix, which compute from genetic matrix.</li>
+<li><code>y</code> An numeric array of phenotype.</li>
+<li><code>fix</code> A matrix containing other variables as fixed effects in mixed model.</li>
+<li><code>idx1</code> An array of index for training set</li>
+<li><code>idx2</code> An array of index for testing (predicted) set
+<br/></li>
+</ul>
+</li>
+</ul>
+<h2 id="bins-map-construction-and-visualization">Bins map construction and visualization</h2>
+<h5 id="construct-ibd-map">Construct IBD map</h5>
+<ul>
+<li><em><strong><code>IBDConstruct</code></strong></em></li>
+<li>Description</br>
+A IBD map was constructed of contributions from the parents onto the progeny lines using a hidden Markov model (HMM). </li>
+<li>Usage <br/>
+<code>IBDConstruct(snpParents,snpProgeny,markerInfo,q,rou,G,threshold = NULL,omit = T)</code></li>
+<li>Arguments<ul>
+<li><code>snpParents</code> A matrix for the parents' genotype, lines in column and marker in row.</li>
+<li><code>snpProgeny</code> An array for the progeny' genotype, marker number must equal to snpParents.</li>
+<li><code>markerInfo</code> A matrix or dataframe with four cols(marker ID, allele, chromsome and physical position) regarding genotypic information.</li>
+<li><code>q</code> The quality of sequencing, range 0 to 1 to define the quality of marker.</li>
+<li><code>rou</code> Correlations between any pairs of flanking markers, that estimated with the offspring-LD level after corrected by parent-LD level, it can be obtained by genetic location.</li>
+<li><code>G</code> Generations that the offsprings decented from the parents.</li>
+<li><code>threshold</code> The threshold of posterior.</li>
+<li><code>omit</code> Whether to omit untraceable segments, default True.
+<br/></li>
+</ul>
+</li>
+</ul>
+<h2 id="bins-map-construction-and-visualization_1">Bins map construction and visualization</h2>
+<h5 id="visualization-of-ibd-map-results">Visualization of IBD map results</h5>
+<ul>
+<li><em><strong><code>binsPlot</code></strong></em></li>
+<li>Description</br>
+Visualization of IBD map results. </li>
+<li>Usage <br/>
+<code>binsPlot(IBDRes,color,parentInfo,parentNum)</code></li>
+<li>Arguments<ul>
+<li><code>IBDRes</code> The results of IBDConstruct, see \code{\link{IBDConstruct}}.</li>
+<li><code>color</code> A named vector for defining color of parents.</li>
+<li><code>parentInfo</code> A named vector for defining label of parents.</li>
+<li><code>parentNum</code> The number of parents.
+<br/></li>
+</ul>
+</li>
+</ul>
+<h5 id="visualization-of-bins-data">Visualization of bins data</h5>
+<ul>
+<li><em><strong><code>mosaicPlot</code></strong></em></li>
+<li>Description</br>
+Visualization of overall bins data</li>
+<li>Usage <br/>
+<code>mosaicPlot(bins,binsInfo,chr,resolution = 500,list,parentNum = 24,color,clust = T,methods = "ward.D2",dist_method = "euclidean")</code></li>
+<li>Arguments<ul>
+<li><code>bins</code> Results of IBD analysis (bins matrix), each row represents a bin fragment as well as each column represents each sample.</li>
+<li><code>binsInfo</code> Data frame, including bins index, start, end, length of bins locus.</li>
+<li><code>chr</code> Which chromesome will be used to plot mosaic.</li>
+<li><code>resolution</code> To set the resolution of mosaic plot, default 500.</li>
+<li><code>list</code> The names of lines to visualize mosaic plot.</li>
+<li><code>parentNum</code> The number of parent, if color not defined, this parameter is used to auto generate color palette. </li>
+<li><code>color</code> A array to define color palette.</li>
+<li><code>clust</code> Boolean values determining if lines should be hclust object.</li>
+<li><code>methods</code> Clustering method used. Accepts the same values as \code{\link{hclust}}.</li>
+<li><code>dist_method</code> The distance measure to be used for clustering. See \code{\link{dist}}
+<br/></li>
+</ul>
+</li>
+</ul>
+<h2 id="orther-useful-functions">Orther useful functions</h2>
+<h5 id="transform-character-to-number">Transform character to number</h5>
+<ul>
+<li><em><strong><code>transHapmap2numeric</code></strong></em></li>
+<li>Description</br>
+This function help users to transform genetic matrix from character format to numeric format. AA-0, Aa-1, aa-2, A is major allele and a is minor allele.</li>
+<li>Usage <br/>
+<code>transHapmap2numeric(G)</code></li>
+<li>Arguments<ul>
+<li><code>G</code> Genetic matrix of character, row represents sample and column represents SNP.
+<br/></li>
+</ul>
+</li>
+</ul>
+<h5 id="computation-of-gca">Computation of GCA</h5>
+<ul>
+<li><em><strong><code>gcaCompute</code></strong></em></li>
+<li>Description</br>
+Calculate parental general combining ability (GCA) based F1 phenotypic values. </li>
+<li>Usage <br/>
+<code>gcaCompute(phe_df,which,trait)</code></li>
+<li>Arguments<ul>
+<li><code>phe_df</code> Phenotypic data frame, row represents F1 combination and includes the paternal information in columns.</li>
+<li><code>which</code> The column index of male or female to compute parternal or maternal GCA.</li>
+<li><code>trait</code> A character string to define which trait GCA will be computed, this function support two or more phenotypic GCA be computed  at the same time.
+<br/></li>
+</ul>
+</li>
+</ul>
+<h5 id="computation-of-sca">Computation of SCA</h5>
+<ul>
+<li><em><strong><code>scaCompute</code></strong></em></li>
+<li>Description</br>
+Calculate hybrid special combining ability (SCA) based F1 phenotypic values.</li>
+<li>Usage <br/>
+<code>scaCompute(phe_df,which_male,which_female,trait,seqname)</code></li>
+<li>Arguments<ul>
+<li><code>phe_df</code> Phenotypic data frame, row represents F1 combination and includes the paternal information in columns.</li>
+<li><code>which_male</code> The column index of paternal IDs.</li>
+<li><code>which_female</code> The column index of maternal IDs.</li>
+<li><code>trait</code> A character string to define which trait GCA will be computed, this function support two or more phenotypic GCA be computed  at the same time.</li>
+<li><code>seqname</code>  A character array regarding hybrid IDs
+<br/></li>
+</ul>
+</li>
+</ul>
+<h5 id="distribution-correction">Distribution correction</h5>
+<ul>
+<li><em><strong><code>reviseFunc</code></strong></em></li>
+<li>Description</br>
+Scale two sets of data to a uniform distribution.</li>
+<li>Usage <br/>
+<code>reviseFunc(ori,aim,cut = 10,sample_names)</code></li>
+<li>Arguments<ul>
+<li><code>ori</code> A numeric array, as reference for correction.</li>
+<li><code>aim</code> A numeric array, which is the object to implement correction.</li>
+<li><code>cut</code> Number of intervals to cut, default 10.</li>
+<li><code>sample_names</code> A character array consits of <code>aim</code>'s name.
+<br/></li>
+</ul>
+</li>
+</ul></div>
+            </div>
+        </div>
+
+        <footer class="col-md-12">
+            <hr>
+            <p>Documentation built with <a href="https://www.mkdocs.org/">MkDocs</a>.</p>
+        </footer>
+        <script>
+            var base_url = "..",
+                shortcuts = {"help": 191, "next": 78, "previous": 80, "search": 83};
+        </script>
+        <script src="../js/base.js" defer></script>
+        <script src="../search/main.js" defer></script>
+
+        <div class="modal" id="mkdocs_search_modal" tabindex="-1" role="dialog" aria-labelledby="searchModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="searchModalLabel">Search</h4>
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+            </div>
+            <div class="modal-body">
+                <p>
+                    From here you can search these documents. Enter
+                    your search terms below.
+                </p>
+                <form>
+                    <div class="form-group">
+                        <input type="search" class="form-control" placeholder="Search..." id="mkdocs-search-query" title="Type search term here">
+                    </div>
+                </form>
+                <div id="mkdocs-search-results"></div>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div><div class="modal" id="mkdocs_keyboard_modal" tabindex="-1" role="dialog" aria-labelledby="keyboardModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="keyboardModalLabel">Keyboard Shortcuts</h4>
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+            </div>
+            <div class="modal-body">
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th style="width: 20%;">Keys</th>
+                    <th>Action</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td class="help shortcut"><kbd>?</kbd></td>
+                    <td>Open this help</td>
+                  </tr>
+                  <tr>
+                    <td class="next shortcut"><kbd>n</kbd></td>
+                    <td>Next page</td>
+                  </tr>
+                  <tr>
+                    <td class="prev shortcut"><kbd>p</kbd></td>
+                    <td>Previous page</td>
+                  </tr>
+                  <tr>
+                    <td class="search shortcut"><kbd>s</kbd></td>
+                    <td>Search</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div>
+
+    </body>
+</html>

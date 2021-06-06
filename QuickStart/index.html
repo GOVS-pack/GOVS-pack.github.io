@@ -1,0 +1,360 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        
+        <meta name="author" content="Qian Cheng">
+        
+        <link rel="shortcut icon" href="../img/favicon.ico">
+        <title>QuickStart - GOVS</title>
+        <link href="../css/bootstrap.min.css" rel="stylesheet">
+        <link href="../css/font-awesome.min.css" rel="stylesheet">
+        <link href="../css/base.css" rel="stylesheet">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css">
+
+        <script src="../js/jquery-1.10.2.min.js" defer></script>
+        <script src="../js/bootstrap.min.js" defer></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/languages/yaml.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/languages/rust.min.js"></script>
+        <script>hljs.initHighlightingOnLoad();</script> 
+    </head>
+
+    <body>
+        <div class="navbar fixed-top navbar-expand-lg navbar-dark bg-primary">
+            <div class="container">
+                <a class="navbar-brand" href="..">GOVS</a>
+                <!-- Expander button -->
+                <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbar-collapse">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+
+                <!-- Expanded navigation -->
+                <div id="navbar-collapse" class="navbar-collapse collapse">
+                        <!-- Main navigation -->
+                        <ul class="nav navbar-nav">
+                            <li class="navitem">
+                                <a href=".." class="nav-link">Home</a>
+                            </li>
+                            <li class="navitem active">
+                                <a href="./" class="nav-link">QuickStart</a>
+                            </li>
+                            <li class="navitem">
+                                <a href="../Tutorial/" class="nav-link">Tutorial</a>
+                            </li>
+                            <li class="navitem">
+                                <a href="../about/" class="nav-link">About</a>
+                            </li>
+                        </ul>
+
+                    <ul class="nav navbar-nav ml-auto">
+                        <li class="nav-item">
+                            <a href="#" class="nav-link" data-toggle="modal" data-target="#mkdocs_search_modal">
+                                <i class="fa fa-search"></i> Search
+                            </a>
+                        </li>
+                            <li class="nav-item">
+                                <a rel="prev" href=".." class="nav-link">
+                                    <i class="fa fa-arrow-left"></i> Previous
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a rel="next" href="../Tutorial/" class="nav-link">
+                                    Next <i class="fa fa-arrow-right"></i>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="https://github.com/GOVS-pack/GOVS/edit/master/docs/QuickStart.md" class="nav-link"><i class="fa fa-github"></i> Edit on GitHub</a>
+                            </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="container">
+            <div class="row">
+                    <div class="col-md-3"><div class="navbar-light navbar-expand-md bs-sidebar hidden-print affix" role="complementary">
+    <div class="navbar-header">
+        <button type="button" class="navbar-toggler collapsed" data-toggle="collapse" data-target="#toc-collapse" title="Table of Contents">
+            <span class="fa fa-angle-down"></span>
+        </button>
+    </div>
+
+    
+    <div id="toc-collapse" class="navbar-collapse collapse card bg-secondary">
+        <ul class="nav flex-column">
+            
+            <li class="nav-item" data-level="1"><a href="#quickstart" class="nav-link">Quickstart</a>
+              <ul class="nav flex-column">
+            <li class="nav-item" data-level="2"><a href="#installation" class="nav-link">Installation</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="2"><a href="#data-preparation" class="nav-link">Data preparation</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="2"><a href="#run-govs" class="nav-link">Run GOVS</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="2"><a href="#run-genotytpe-to-phenotype-prediciton-rrblup" class="nav-link">Run genotytpe-to-phenotype prediciton (rrBLUP)</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="2"><a href="#construct-bin-map" class="nav-link">Construct bin map</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="2"><a href="#visualization-of-ibd-map-results" class="nav-link">Visualization of IBD map results</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="2"><a href="#visualization-of-overall-bins-data" class="nav-link">Visualization of overall bins data</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+              </ul>
+            </li>
+        </ul>
+    </div>
+</div></div>
+                    <div class="col-md-9" role="main">
+
+<h1 id="quickstart"><center>Quickstart</center></h1>
+<p><center>Quickstart and examples of main functions</center></p>
+<hr />
+<p>This section briefly introduces some typical examples of GOVS to help users get started quickly. Detailes and other functions of GOVS,please see <a href="../Tutorial/">Tutorial</a> or <a href="">User Manual</a>. </p>
+<h2 id="installation">Installation</h2>
+<pre><code class="language-r">require(&quot;devtools&quot;)
+install_github(&quot;GOVS-pack/GOVS&quot;)
+library(&quot;GOVS&quot;)
+</code></pre>
+<h2 id="data-preparation">Data preparation</h2>
+<h4 id="govs-typically-started-with-four-types-data">GOVS typically started with four types data</h4>
+<ul>
+<li>Genotypic data (hapmap format,matrix).
+<center><img alt="fig1" src="../img/genotype.JPG" title="fig 1" /></center>
+<center>Genotypic data</center><br/></li>
+<li>Phenotypic data (dataframe), first column is lines ID. <br/>
+<center><img alt="fig2" src="../img/phe.JPG" title="fig 2" /></center>
+<center>Phenotypic data</center><br/></li>
+<li>Bins data (matrix),each row represents a bin (reconbination fragment) and each column represents a progeny, contents represent the origins of the bins tracing back to the parental lines. <br/>
+<center><img alt="fig3" src="../img/bins.JPG" title="fig 3" /></center>
+<center>Bins data</center><br/></li>
+<li>Bins information data (dataframe) corresponding to bins data, consists of five columns (bin ID, chromsome, start position, end position and length of each bin). <br/>
+<center><img alt="fig4" src="../img/binsData.JPG" title="fig 4" /></center>
+<center>Bins information data</center><br/></li>
+</ul>
+<h6 id="notethe-header-of-bins-the-first-column-of-phenotype-and-the-header-of-genotype-must-be-unified-we-recommend-unify-these-id-with-patrental-id"><span style="color:red"> <strong>NOTE:The header of bins, the first column of phenotype and the header of genotype must be unified, we recommend unify these ID with patrental ID.</strong> </span></h6>
+<h2 id="run-govs">Run GOVS</h2>
+<pre><code class="language-r">## Not run !
+## load test data
+# Phenotypic data:
+data(phe)
+# genomic data:
+data(MZ)
+# bins data:
+data(bins)
+# bins information:
+data(binsInfo)
+
+# example for one-stop solution for GOVS
+GOVS_res &lt;- GOVS(MZ,pheno = phe,trait = &quot;EW&quot;,which = &quot;max&quot;,bins = bins,
+                 binsInfo = binsInfo,module = &quot;DES&quot;)
+</code></pre>
+<h4 id="output-of-govs">Output of GOVS:</h4>
+<h5 id="a-list-or-several-files-if-output-is-defined">A list or several files (if <code>output</code> is defined).<br/></h5>
+<ul>
+<li><code>$GORes</code> Genome optimization results.</li>
+<li><code>$virtualGenome</code> A matrix involves of three optimal virtual genomes.</li>
+<li><code>$statRes</code> A data frame regarding statistics results of virtual simulation.<ul>
+<li><code>Lines</code>   Lines</li>
+<li><code>Bins(#)</code> The number (#) of bins that a line contributed to the simulated genome.</li>
+<li><code>Bins(%)</code> The number of bins that a line contributed accounting for the proportion (%) of simulated genome.</li>
+<li><code>Fragments(%)</code> The total length of genomic fragments that a line contributed accounting for the proportion (%) of simulated genome.</li>
+<li><code>phenotype</code>   The phenotypic value of the corresponding lines or their offspring</li>
+<li><code>phenotypeRank</code>   The phenotype rank</li>
+<li><code>Cumulative(%)</code>   The cumulative percentage of fragments contributing to the simulated genome.
+<br/>
+<center><img alt="fig5" src="../img/staRes.JPG" title="fig 5" /></center>
+<center>Statistic summary of GOVS</center><br/></li>
+</ul>
+</li>
+</ul>
+<h2 id="run-genotytpe-to-phenotype-prediciton-rrblup">Run genotytpe-to-phenotype prediciton (rrBLUP)</h2>
+<pre><code>## Not run! 
+## load hapmap data (genomic data) of MZ hybrids
+data(MZ)
+
+## load phenotypic data of MZ hybrids
+data(phe)
+
+## pre-process for G2P prediction 
+rownames(MZ) &lt;- MZ[,1]
+MZ &lt;- MZ[,-c(1:11)]
+MZ.t &lt;- t(MZ)
+
+## conversion
+MZ.n &lt;- transHapmap2numeric(MZ.t)
+dim(MZ.t)
+
+## prediction
+idx1 &lt;- sample(1:1404,1000)
+idx2 &lt;- setdiff(1:1404,idx1)
+predRes &lt;- SNPrrBLUP(MZ.n,phe$EW,idx1,idx2,fix = NULL,model = FALSE)
+</code></pre>
+<h2 id="construct-bin-map">Construct bin map</h2>
+<p>Take chromosome-10 of one offspring as an example.</p>
+<pre><code>## load example data
+data(IBDTestData)
+
+## compute rou from genetic position
+rou = IBDTestData$posGenetic
+rou = diff(rou)
+rou = ifelse(rou&lt;0,0,rou)
+
+## constract IBD map of chr10 for one progeny
+IBDRes &lt;- IBDConstruct(snpParents = IBDTestData$snpParents,
+markerInfo = IBDTestData$markerInfo,
+snpProgeny = IBDTestData$snpProgeny,q = 0.97,G = 9,rou = rou)
+</code></pre>
+<h4 id="output-of-ibdconstruct">Output of IBDConstruct:</h4>
+<h5 id="a-list-regarding-constructed-bin-map">A list regarding constructed bin map.</h5>
+<ul>
+<li><code>bin</code> Results of IBD analysis, each row represents a bin fragment.</li>
+<li><code>binsInfo</code> Data frame, including bins index, start, end, length of bins locus.</li>
+</ul>
+<h2 id="visualization-of-ibd-map-results">Visualization of IBD map results</h2>
+<pre><code class="language-r">## load example data
+data(IBDTestData)
+
+## compute rou from genetic position
+rou = IBDTestData$posGenetic
+rou = diff(rou)
+rou = ifelse(rou&lt;0,0,rou)
+
+## constract IBD map of chr10 for one progeny
+IBDRes &lt;- IBDConstruct(snpParents = IBDTestData$snpParents,
+markerInfo = IBDTestData$markerInfo,
+snpProgeny = IBDTestData$snpProgeny,q = 0.97,G = 9,rou = rou)
+
+## plot
+# color
+color &lt;- c(&quot;#DA053F&quot;,&quot;#FC0393&quot;,&quot;#C50F84&quot;,&quot;#D870D4&quot;,&quot;#DCA0DC&quot;,&quot;#4A0380&quot;,
+           &quot;#9271D9&quot;,&quot;#0414FB&quot;,&quot;#2792FC&quot;,&quot;#4883B2&quot;,&quot;#2CFFFE&quot;,&quot;#138B8A&quot;,
+           &quot;#42B373&quot;,&quot;#9BFB9C&quot;,&quot;#84FF2F&quot;,&quot;#566B32&quot;,&quot;#FED62D&quot;,&quot;#FD8A21&quot;,
+           &quot;#F87E75&quot;,&quot;#B01D26&quot;,&quot;#7E0006&quot;,&quot;#A9A9A9&quot;,&quot;#FFFE34&quot;,&quot;#FEBFCB&quot;)
+names(color) &lt;- 1:24
+
+# parent label
+parentInfo &lt;- c(&quot;5237&quot;,&quot;E28&quot;,&quot;Q1261&quot;,&quot;CHANG7-2&quot;,&quot;DAN340&quot;,&quot;HUANGC&quot;,&quot;HYS&quot;,
+                &quot;HZS&quot;,&quot;TY4&quot;,&quot;ZI330&quot;,&quot;ZONG3&quot;,&quot;LX9801&quot;,&quot;XI502&quot;,&quot;81515&quot;,
+                &quot;F349&quot;,&quot;H21&quot;,&quot;JI853&quot;,&quot;JI53&quot;,&quot;LV28&quot;,&quot;YUANFH&quot;,&quot;SHUANG741&quot;,
+                &quot;K12&quot;,&quot;NX110&quot;,&quot;ZONG31&quot;)
+names(parentInfo) &lt;- 1:24
+
+# plot
+binsPlot(IBDRes,color,parentInfo,24)
+</code></pre>
+<p><center><img alt="fig6" src="../img/example_binplot.jpg" title="fig 6" /></center>
+<center>Bins map plot</center><br/></p>
+<h2 id="visualization-of-overall-bins-data">Visualization of overall bins data</h2>
+<p>Take chromosome-1 and first 200 progeny as an example.</p>
+<pre><code class="language-r">## load data
+data(bins)
+data(binsInfo)
+## color
+color &lt;- c(&quot;#DA053F&quot;,&quot;#FC0393&quot;,&quot;#C50F84&quot;,&quot;#D870D4&quot;,&quot;#DCA0DC&quot;,&quot;#4A0380&quot;,
+            &quot;#9271D9&quot;,&quot;#0414FB&quot;,&quot;#2792FC&quot;,&quot;#4883B2&quot;,&quot;#2CFFFE&quot;,&quot;#138B8A&quot;,
+            &quot;#42B373&quot;,&quot;#9BFB9C&quot;,&quot;#84FF2F&quot;,&quot;#566B32&quot;,&quot;#FED62D&quot;,&quot;#FD8A21&quot;,
+            &quot;#F87E75&quot;,&quot;#B01D26&quot;,&quot;#7E0006&quot;,&quot;#A9A9A9&quot;,&quot;#FFFE34&quot;,&quot;#FEBFCB&quot;)
+
+mosaicPlot(bins = bins,binsInfo = binsInfo,chr = 1,resolution = 500,
+                  color = color,
+                  list = colnames(bins)[1:200])
+</code></pre>
+<p><center><img alt="fig7" src="../img/Chr1_200line_mosasic.jpg" title="fig 7" /></center>
+<center>Bins mosaic plot</center><br/></p></div>
+            </div>
+        </div>
+
+        <footer class="col-md-12">
+            <hr>
+            <p>Documentation built with <a href="https://www.mkdocs.org/">MkDocs</a>.</p>
+        </footer>
+        <script>
+            var base_url = "..",
+                shortcuts = {"help": 191, "next": 78, "previous": 80, "search": 83};
+        </script>
+        <script src="../js/base.js" defer></script>
+        <script src="../search/main.js" defer></script>
+
+        <div class="modal" id="mkdocs_search_modal" tabindex="-1" role="dialog" aria-labelledby="searchModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="searchModalLabel">Search</h4>
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+            </div>
+            <div class="modal-body">
+                <p>
+                    From here you can search these documents. Enter
+                    your search terms below.
+                </p>
+                <form>
+                    <div class="form-group">
+                        <input type="search" class="form-control" placeholder="Search..." id="mkdocs-search-query" title="Type search term here">
+                    </div>
+                </form>
+                <div id="mkdocs-search-results"></div>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div><div class="modal" id="mkdocs_keyboard_modal" tabindex="-1" role="dialog" aria-labelledby="keyboardModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="keyboardModalLabel">Keyboard Shortcuts</h4>
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+            </div>
+            <div class="modal-body">
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th style="width: 20%;">Keys</th>
+                    <th>Action</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td class="help shortcut"><kbd>?</kbd></td>
+                    <td>Open this help</td>
+                  </tr>
+                  <tr>
+                    <td class="next shortcut"><kbd>n</kbd></td>
+                    <td>Next page</td>
+                  </tr>
+                  <tr>
+                    <td class="prev shortcut"><kbd>p</kbd></td>
+                    <td>Previous page</td>
+                  </tr>
+                  <tr>
+                    <td class="search shortcut"><kbd>s</kbd></td>
+                    <td>Search</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div>
+
+    </body>
+</html>
