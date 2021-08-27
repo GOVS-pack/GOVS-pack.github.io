@@ -96,7 +96,7 @@
               <ul class="nav flex-column">
               </ul>
             </li>
-            <li class="nav-item" data-level="2"><a href="#extraction-assembly-module" class="nav-link">Extraction &amp; assembly module</a>
+            <li class="nav-item" data-level="2"><a href="#extraction-and-assembly-module" class="nav-link">Extraction and assembly module</a>
               <ul class="nav flex-column">
               </ul>
             </li>
@@ -146,7 +146,7 @@ One-stop function for a complete progress of genome optimization</li>
 <li><code>bins</code> Results of IBD analysis (bins matrix), each row represents a bin fragment as well as each column represents each sample.</li>
 <li><code>binsInfo</code> Data frame, including bins index, start, end, length of bins locus.</li>
 <li><code>output</code> The prefix of output files.</li>
-<li><code>module</code> Character represents the module combination for analysis, default "DES", "D" for genome optimization module, "E" for extraction &amp; assembly module. "S" for statistic module. "D","E","S","DE","DES" and "ES" are alternative for different module combinations. Note that different combination need different essential inputs, details see <a href="./##Genome optimization module"><code>genomeOptimization</code></a> <a href="./##Extraction &amp; assembly module"><code>extractGenome</code></a> <a href="./##Statistic module"><code>statDesign</code></a>.</li>
+<li><code>module</code> Character represents the module combination for analysis, default "DES", "D" for genome optimization module, "E" for extraction &amp; assembly module. "S" for statistic module. "D","E","S","DE","DES" and "ES" are alternative for different module combinations. Note that different combination need different essential inputs, details see <a href="#genome-optimization-module"><code>genomeOptimization</code></a> <a href="#extraction-and-assembly-module"><code>extractGenome</code></a> <a href="#statistic-module"><code>statDesign</code></a>.</li>
 <li><code>designInfo</code> Data frame, the results of genome optimization module, it's necessary for "ES" and "S" module.
 <br/></li>
 </ul>
@@ -168,7 +168,7 @@ Virtual genome optimization based IBD(bins) data</li>
 </ul>
 </li>
 </ul>
-<h2 id="extraction-assembly-module">Extraction &amp; assembly module</h2>
+<h2 id="extraction-and-assembly-module">Extraction and assembly module</h2>
 <ul>
 <li><em><strong><code>extractGenome</code></strong></em></li>
 <li>Description<br/>
@@ -179,7 +179,7 @@ Extracting genome fragment from candidates based the results of genome optimizat
 <li><code>hmp</code> The genetic data in hapmap format.</li>
 <li><code>binInfo</code> Data frame, including bins index, start, end, length of bins locus.</li>
 <li><code>ID</code> A character array regarding sample IDs for <code>hmp</code>, if NULL, the <code>hmp</code> data must involve header.</li>
-<li><code>designInfo</code> Outputs of <a href="./##Genome optimization module"><code>genomeOptimization</code></a>, a matrix consists of sample IDs regarding the fragment source among condidates at each bin locus.</li>
+<li><code>designInfo</code> Outputs of [<code>genomeOptimization</code>]{#genome-optimization-module}, a matrix consists of sample IDs regarding the fragment source among condidates at each bin locus.</li>
 <li><code>write</code> Boolean, if write the assembled genome to file, default FALSE.</li>
 <li><code>bins</code> Results of IBD analysis (bins matrix), each row represents a bin fragment as well as each column represents each sample.</li>
 <li><code>extractContent</code> Character, the content of virtual genome, "Bin" for bin source well "Genotype" for genetic data, default "Genotype".
@@ -195,7 +195,7 @@ Statistic summary for analysis of the contribution of all candidates to optimal 
 <li>Usage <br/>
 <code>statDesign(designInfo,binInfo,pheno,trait,output)</code></li>
 <li>Arguments<ul>
-<li><code>designInfo</code> Outputs of <a href="#Genome optimization module"><code>genomeOptimization</code></a>, a matrix consists of sample IDs regarding the fragment source among condidates at each bin locus.</li>
+<li><code>designInfo</code> Outputs of <a href="#genome-optimization-module"><code>genomeOptimization</code></a>, a matrix consists of sample IDs regarding the fragment source among condidates at each bin locus.</li>
 <li><code>binInfo</code> Data frame, including bins index, start, end, length of bins locus.</li>
 <li><code>pheno</code> Phenotypic data frame, the first column describes sample names.</li>
 <li><code>trait</code> The names of interest trait (The trait must be included in <code>Pheno</code> data frame). </li>
@@ -213,7 +213,7 @@ Genotpye-to-phenotype prediciton via ridge regression best linear unbiased predi
 <li>Usage <br/>
 <code>SNPrrBLUP(x,y,fix = NULL,idx1,idx2)</code></li>
 <li>Arguments<ul>
-<li><code>x</code> Genotypic matrix in numberic format (See <a href="./#####Transform character to number"><code>transHapmap2numeric</code></a>), row represents sample well column represents feature (SNP).</li>
+<li><code>x</code> Genotypic matrix in numberic format (See <a href="#transform-character-to-number"><code>transHapmap2numeric</code></a>), row represents sample well column represents feature (SNP).</li>
 <li><code>y</code> An numeric array of phenotype.</li>
 <li><code>fix</code> A matrix containing other variables as fixed effects in mixed model.</li>
 <li><code>idx1</code> An array of index for training set</li>
@@ -269,7 +269,7 @@ Visualization of IBD map results. </li>
 <li>Usage <br/>
 <code>binsPlot(IBDRes,color,parentInfo,parentNum)</code></li>
 <li>Arguments<ul>
-<li><code>IBDRes</code> The results of IBDConstruct, see <a href="##Bins map construction and visualization"><code>IBDConstruct</code></a>.</li>
+<li><code>IBDRes</code> The results of IBDConstruct, see <a href="#bins-map-construction-and-visualization"><code>IBDConstruct</code></a>.</li>
 <li><code>color</code> A named vector for defining color of parents.</li>
 <li><code>parentInfo</code> A named vector for defining label of parents.</li>
 <li><code>parentNum</code> The number of parents.
